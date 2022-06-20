@@ -16,10 +16,11 @@ docker-image:
 
 wordcount:
 	pachctl create repo urls
+    pachctl auth set repo urls repoOwner robot:github 
 	cd data && pachctl put file urls@master -f Wikipedia
-	pachctl create pipeline -f pipelines/scraper.json
-	pachctl create pipeline -f pipelines/map.json
-	pachctl create pipeline -f pipelines/reduce.json
+	#pachctl create pipeline -f pipelines/scraper.json
+	#pachctl create pipeline -f pipelines/map.json
+	#pachctl create pipeline -f pipelines/reduce.json
 
 clean:
 	pachctl delete pipeline reduce

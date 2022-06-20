@@ -1,6 +1,6 @@
 {
   "pipeline": {
-    "name": "map"
+    "name": "map_dataclean"
   },
   "description": "A pipeline that tokenizes scraped pages and appends counts of words to corresponding files.",
   "transform": {

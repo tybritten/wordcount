@@ -1,6 +1,6 @@
 {
   "pipeline": {
-    "name": "reduce"
+    "name": "reduce_training"
   },
   "description": "A pipeline that aggregates the total counts for each word.",
   "transform": {
@@ -13,7 +13,8 @@
   },
   "input": {
     "pfs": {
-      "repo": "map",
+      "name": "map",
+      "repo": "map_dataclean",
       "glob": "/"
     }
   }
