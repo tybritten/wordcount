@@ -45,7 +45,7 @@ func main() {
 			return nil
 		}
 
-		log.Printf("scanning %v", path)
+		log.Printf("scanning path %v", path)
 		f, err := os.Open(path)
 		if err != nil {
 			return err
