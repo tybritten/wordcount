@@ -4,7 +4,7 @@
   },
   "description": "A pipeline that tokenizes scraped pages and appends counts of words to corresponding files.",
   "transform": {
-    "image": "pachyderm/example-wordcount:2.0.3",
+    "image": "vmtyler/wordcount:9cc1a11bcc4a2c972a484adedd7ce3fb3b2aacff",
     "cmd": [
       "app",
       "/pfs/scraper/", 

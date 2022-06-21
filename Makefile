@@ -1,6 +1,6 @@
 # Set as you wish
-DOCKER_ACCOUNT := pachyderm
-CONTAINER_NAME := example-wordcount
+DOCKER_ACCOUNT := vmtyler
+CONTAINER_NAME := wordcount
 CONTAINER_VERSION := 2.0.3
 CONTAINER_TAG := $(DOCKER_ACCOUNT)/$(CONTAINER_NAME):$(CONTAINER_VERSION)
 
@@ -16,20 +16,19 @@ docker-image:
 
 wordcount:
 	pachctl create repo urls
-    pachctl auth set repo urls repoOwner robot:github 
+	pachctl auth set repo urls repoOwner robot:github 
+	pachctl create pipeline -f pipelines/scraper.json
+	pachctl create pipeline -f pipelines/map.json
+	pachctl create pipeline -f pipelines/reduce.json
 	cd data && pachctl put file urls@master -f Wikipedia
-	#pachctl create pipeline -f pipelines/scraper.json
-	#pachctl create pipeline -f pipelines/map.json
-	#pachctl create pipeline -f pipelines/reduce.json
+	cd data && pachctl put file urls@master -f Github
+
 
 clean:
-	pachctl delete pipeline reduce
-	pachctl delete pipeline map
+	pachctl delete pipeline reduce_training
+	pachctl delete pipeline map_dataclean
 	pachctl delete pipeline scraper
 	pachctl delete repo urls
-	pachctl delete repo scraper	
-	pachctl delete repo map	
-	pachctl delete repo reduce
 
 
 .PHONY:
