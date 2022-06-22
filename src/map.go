@@ -80,7 +80,6 @@ func main() {
 	for word, count := range wordMap {
 		newPath := filepath.Join(outputDir,os.Getenv("PACH_DATUM_ID"))
 		os.MkdirAll(newPath, os.ModePerm)
-		word += ".txt"
 		if err := ioutil.WriteFile(filepath.Join(newPath,word), []byte(strconv.Itoa(count)+"\n"), 0644); err != nil {
 			log.Fatal(err)
 		}
